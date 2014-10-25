@@ -1,34 +1,10 @@
-[![Build Status](https://travis-ci.org/ericzhang-cn/papery.png)](https://travis-ci.org/ericzhang-cn/papery)
-
-Papery - Create your simple, fast & elegant blog with plain text.
-
-# 一分钟生成自己的博客
-
-```bash
-npm install -g papery
-
-papery create myblog
-papery build myblog
-papery server myblog
-```
-
-在浏览器中输入 http://localhost:8001/ 即可访问
-
-# papery的特点
-+ 纯nodejs编写，跨平台，通过npm直接安装使用
-+ 不使用动态脚本，没有数据库
-+ 全结构化文本模式(yaml + markdown)发布文章及页面
-+ 全静态网站，访问速度飞快，天然防SQL注入等攻击
-+ 可定制模板系统，并可方便的扩展
-+ 支持自定义皮肤主题
-+ 自带代码高亮及LaTeX数学公式支持
-+ 可通过插件支持评论、分享、站内推荐等功能
+Papery - create your simple, fast & elegant blog with plain text.
 
 # 使用说明
 ## 安装及升级
 首先要保证机器上安装有[NodeJS](http://nodejs.org/)及[npm](https://npmjs.org/)。
 
-NodeJs版本需要 >= 0.10。
+NodeJs版本需要>=0.10。
 
 ### 安装
 ```bash
@@ -138,13 +114,13 @@ papery中的文章有两部分组成：文章配置及元文本。文章配置�
 
 ```yaml
 - id: post-id
-  title: 文章标题
+  title: 文章标题 
   postedOn: !!str 2013-01-01
   author: 作者
-  tags:
+  tags: 
     - 标签1
     - 标签2
-  abstract: 摘要内容
+  abstract: 摘要内容 
 ```
 
 注意其中最重要的配置项是id。id作为文章的唯一标识，要求在整个articles.yml配置的所有文章中唯一，并且只能包含小写英文字母、数字和中横“-”。
@@ -152,7 +128,9 @@ papery中的文章有两部分组成：文章配置及元文本。文章配置�
 id不但指定了元文本的名称，而且会成为文章permalink的。建议的id写法是文章的英文标题按单词用“-”连接。例如“papery-quickstart”。
 
 ### 元文本
-元文本是文章的内容，papery根据元文本和文章配置最终生成文章页面。papery使用[GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)(简称gfm)作为元文本书写格式。gfm基本保持了标准markdown的功能，同时增加了一些新的特性，文档见[这里](https://help.github.com/articles/github-flavored-markdown)。
+元文本是文章的内容，papery根据元文本和文章配置最终生成文章页面。
+papery使用[GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)(简称gfm)作为元文本书写格式。
+gfm基本保持了标准markdown的功能，同时增加了一些新的特性，文档见[这里](https://help.github.com/articles/github-flavored-markdown)。
 
 一篇元文本是放在articles目录下以“md”为后缀名的文件，注意元文本的名字对应配置中id字段的名字。例如“id: papery-quickstart”的文章对应的元文本为articles/papery-quickstart.md。
 
@@ -195,7 +173,15 @@ int main(int argc, char** argv) {
 ```
 </pre>
 
-即可实现代码高亮。
+即可实现代码高亮。效果：
+
+```c
+#include <stdio.h>
+
+int main(int argc, char** argv) {
+    printf("%s\n", "Hello, World!");
+}
+```
 
 papery自带两种代码高亮风格，分别是“night”和“light”。默认为“night”，可以在site.yml的“codetheme”中配置。
 
@@ -203,28 +189,36 @@ papery自带两种代码高亮风格，分别是“night”和“light”。默�
 papery默认启用[MathJax](http://www.mathjax.org/)插件，因此直接支持LaTeX格式的数学公式渲染。不过由于反斜杠“\”和下划线“_”在markdown中有特殊意义，因此需要转义。
 
 ### 内联数学公式
-内联数学公式使用“$...$”或“\\(...\\)”包裹，渲染后内联于行内。例如：
+内联数学公式使用“\$...\$”或“\\\\(...\\\\)”包裹，渲染后内联于行内。例如：
 
-```
+<pre>
 \\(e^{i\\pi}+1=0\\)
 $e^{i\\pi}+1=0$
-```
+</pre>
+
+效果：$e^{i\\pi}+1=0$
 
 注意反斜杠需要转义。另外，如果需要将“$”解释为字符本身而非Tex数学公式，可以使用转义字符，如：
 
-```
-\\$2.50
-```
+<pre>
+\$2.50
+</pre>
 
 ### 单行数学公式
-单行数学公式使用“$$...$$”或“\\[...\\]”包裹，渲染后单独占一行，例如：
+单行数学公式使用“\$\$...\$\$”或“\\\\[...\\\\]”包裹，渲染后单独占一行，例如：
 
-```
+<pre>
 \\[e^{i\\pi}+1=0\\]
 $$e^{i\\pi}+1=0$$
-```
+</pre>
+
+效果：
+$$e^{i\\pi}+1=0$$
 
 ## TOC
+效果：
+<!-- toc -->
+
 在文中任何位置插入
 
 ```html
